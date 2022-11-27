@@ -1,5 +1,8 @@
 const express = require('express');
 //Aqui irán las rutas
+const indexRoutes = require('./src/api/index/index.routes');
+const legendsroutes = require('./src/api/legends/legends.routes');
+
 const cors = require("cors");
 require("dotenv").config();
 const db = require('./src/utils/database/db');
@@ -28,7 +31,9 @@ server.use(express.json());
 server.use(express.urlencoded());
 
 // rutas
+server.use('/', indexRoutes);
+server.use('/legends', legendsroutes);
 
 server.listen(PORT, () => {
-  console.log(`Servidor a todo gas en http://localhost:${PORT}`);
+  console.log(`Server working on http://localhost:${PORT}`);
 });
